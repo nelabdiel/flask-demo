@@ -13,11 +13,6 @@ app = Flask(__name__)
 
 app.vars = {}
 
-app.vars['color'] = {
-    'Close': 'navy',
-    'Adj. Close': 'orange'
-}
-
 @app.route('/')
 def main():
     return redirect('/index')
@@ -30,19 +25,12 @@ def index():
         app.vars['ticker'] = request.form['ticker']
         app.vars['features'] = request.form.getlist('features')
 
-        if app.vars['ticker'].strip() == '':
-            return redirect('/error-page')
-
         # Pull stock data
         url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + app.vars['ticker'] + '/data.json'
-        r = requests.get(url)
-        if r.status_code == 404:
-            return redirect('/error-page')
-        else:
-            data = r.json()['dataset_data']['data']
-            cols = r.json()['dataset_data']['column_names']
-            app.vars['data'] = pd.DataFrame(data, columns=cols)
-            return redirect('/graph')
+        data = r.json()['dataset_data']['data']
+        cols = r.json()['dataset_data']['column_names']
+        app.vars['data'] = pd.DataFrame(data, columns=cols)
+        return redirect('/graph')
 
 @app.route('/graph', methods=['GET'])
 def graph():
