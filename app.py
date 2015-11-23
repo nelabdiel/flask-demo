@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect
 #from bokeh.templates import RESOURCES
 #from bokeh.util.string import encode_utf8
 #import requests
-#import pandas as pd
+import pandas as pd
 
 app = Flask(__name__)
 
