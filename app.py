@@ -32,6 +32,7 @@ def index():
 
         # Pull stock data
         url = 'https://www.quandl.com/api/v3/datasets/WIKI/' + app.vars['ticker'] + '/data.json'
+        r = requests.get(url)
         data = r.json()['dataset_data']['data']
         cols = r.json()['dataset_data']['column_names']
         app.vars['data'] = pd.DataFrame(data, columns=cols)
