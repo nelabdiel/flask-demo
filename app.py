@@ -13,6 +13,11 @@ app = Flask(__name__)
 
 app.vars = {}
 
+app.vars['color'] = {
+    'Close': 'navy',
+    'Adj. Close': 'red'
+}
+
 @app.route('/')
 def main():
     return redirect('/index')
