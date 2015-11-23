@@ -24,7 +24,7 @@ def main():
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-if request.method == 'GET':
+    if request.method == 'GET':
         return render_template('index.html')
     else:
         app.vars['ticker'] = request.form['ticker']
