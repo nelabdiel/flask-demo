@@ -15,12 +15,13 @@
   </head>
   <body>
     <center>  
-    <h1>Generated graph for {{ticker}} <br>
-        <a href="/index">Back</a>
-    </h1>
+    <h1>Graph of {{ticker}}.</h1>
        
 
     {{ plot_div|indent(4)|safe }}
+        <h1>
+            <a href="/index">Back</a>
+        </h1>    
     </center> 
   </body>
 </html>
