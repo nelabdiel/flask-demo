@@ -1,5 +1,4 @@
-#Started by looking at the source html file from the example app to see how everything was called.
-
+#I Started by looking at the source html file from the example app to see how everything was called.
 from flask import Flask, render_template, request, redirect
 from bokeh.embed import components
 from bokeh.plotting import figure
@@ -42,7 +41,7 @@ def index():
 def graph():
     df = app.vars['data']
 
-    p = figure(width=700, height=500, x_axis_type="datetime",
+    p = figure(width=650, height=500, x_axis_type="datetime",
                 title="Data from Quandle WIKI set")
     for category in app.vars['features']:
         p.line(pd.to_datetime(df['Date']), df[category],
