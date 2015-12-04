@@ -44,25 +44,14 @@ def graph():
     p = figure(width=650, height=500, x_axis_type="datetime",
                 title="Data from Quandle WIKI set")
     for category in app.vars['features']:
-        p.line(pd.to_datetime(df['Date']), df[category],
-                color=app.vars['color'][category], line_width=1,
-                legend=app.vars['ticker'] + ": " + category)
+        p.line(pd.to_datetime(df['Date']), df[category], color=app.vars['color'][category], line_width=1, legend=app.vars['ticker'] + ": " + category)
 
     p.legend.orientation = "top_right"
 
-    plot_resources = RESOURCES.render(
-        js_raw=INLINE.js_raw,
-        css_raw=INLINE.css_raw,
-        js_files=INLINE.js_files,
-        css_files=INLINE.css_files,
-    )
+    plot_resources = RESOURCES.render(js_raw=INLINE.js_raw, css_raw=INLINE.css_raw, js_files=INLINE.js_files, css_files=INLINE.css_files)
 
     script, div = components(p, INLINE)
-    html = render_template(
-        'graph.html',
-        ticker=app.vars['ticker'],
-        plot_script=script, plot_div=div, plot_resources=plot_resources
-    )
+    html = render_template('graph.html', ticker=app.vars['ticker'], plot_script=script, plot_div=div, plot_resources=plot_resources)
     return encode_utf8(html)
 
 if __name__ == '__main__':
